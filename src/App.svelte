@@ -3,6 +3,7 @@
 	export let name;
 
 	let list = [];
+	let listVisible = false;
 
 	const getItem = (min, max) => {
 	  return { id: Math.random(), num: Math.floor(Math.random() * max + min) };
@@ -24,11 +25,15 @@
 	const clearList = () => {
 	  list = [];
 	};
+
+	const handleToggle = event => {
+	  listVisible = event.target.checked;
+	};
 </script>
 
 <style>
 	h1 {
-	  color: rgb(92, 117, 23);
+	  color: rgb(32, 12, 87);
 	}
 	ul {
 	  list-style: none;
@@ -38,21 +43,39 @@
 	  font-size: 20px;
 	  cursor: pointer;
 	}
+
+	#myList,
+	#myTempText {
+	  position: absolute;
+	}
+
+	#app {
+	  position: relative;
+	}
 </style>
 
-<h1>Hello {name}!</h1>
-<button on:click={addItem}>Lägg till</button>
-<button on:click={add100Items}>Lägg till 100</button>
-<button on:click={clearList}>Rensa</button>
-<div>
-<span>Length={list.length}</span>
-	<ul>
-		{#each list as item (item.id)}
-			<li>
-				{item.num}
-			</li>
-			{:else}
-			<li>Tom</li>
-		{/each}
-	</ul>
+<div id="app">
+	<h1>Hello {name}!</h1>
+	<button on:click={addItem}>Lägg till</button>
+	<button on:click={add100Items}>Lägg till 100</button>
+	<button on:click={clearList}>Rensa</button>
+	<input type="checkbox" on:change={handleToggle}>Show list
+	<div>
+	{#if listVisible===true}
+	<div id="myList">
+	<span transition:fade>Length={list.length}</span>
+		<ul transition:fade>
+			{#each list as item (item.id)}
+				<li>
+					{item.num}
+				</li>
+				{:else}
+				<li>Tom</li>
+			{/each}
+		</ul>
+	</div>
+	{:else}
+	<h2 id="myTempText" transition:fade >Check the chekcbox to see a list</h2>
+	{/if}
+	</div>
 </div>
