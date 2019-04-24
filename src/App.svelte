@@ -14,7 +14,7 @@
 	};
 
 	const add100Items = () => {
-	  for (let n = 0; n < 10000; n++) {
+	  for (let n = 0; n < 100; n++) {
 	    list = [...list, getItem(0, 100)];
 	    // .sort((a, b) =>
 	    //   a < b ? -1 : a > b ? 1 : 0
@@ -56,26 +56,24 @@
 
 <div id="app">
 	<h1>Hello {name}!</h1>
-	<button on:click={addItem}>Lägg till</button>
-	<button on:click={add100Items}>Lägg till 100</button>
-	<button on:click={clearList}>Rensa</button>
-	<input type="checkbox" on:change={handleToggle}>Show list
-	<div>
+	<input type="checkbox" on:change={handleToggle}>Show list<br/>
 	{#if listVisible===true}
-	<div id="myList">
-	<span transition:fade>Length={list.length}</span>
-		<ul transition:fade>
-			{#each list as item (item.id)}
-				<li>
-					{item.num}
-				</li>
-				{:else}
-				<li>Tom</li>
-			{/each}
-		</ul>
-	</div>
-	{:else}
-	<h2 id="myTempText" transition:fade >Check the chekcbox to see a list</h2>
+		<div transition:fly="{{y:200, duration:500}}" id="myList">
+			<button on:click={addItem}>Lägg till</button>
+			<button on:click={add100Items}>Lägg till 100</button>
+			<button on:click={clearList}>Rensa</button>
+			<span>Length={list.length}</span>
+			<ul>
+				{#each list as item (item.id)}
+					<li>
+						{item.num}
+					</li>
+					{:else}
+					<li>Tom</li>
+				{/each}
+			</ul>
+		</div>
+		{:else}
+		<h2 id="myTempText" transition:fly="{{y:200, duration:500}}" >Check the chekcbox to see a list</h2>
 	{/if}
-	</div>
 </div>
