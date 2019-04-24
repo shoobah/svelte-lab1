@@ -1,5 +1,6 @@
 <script>
 	import { fade, fly } from "svelte/transition";
+	import Checkbox from "./components/Checkbox.svelte";
 	export let name;
 
 	let list = [];
@@ -27,7 +28,7 @@
 	};
 
 	const handleToggle = event => {
-	  listVisible = event.target.checked;
+	  listVisible = event.detail;
 	};
 </script>
 
@@ -56,9 +57,11 @@
 
 <div id="app">
 	<h1>Hello {name}!</h1>
-	<input type="checkbox" on:change={handleToggle}>Show list<br/>
+	<!-- <input type="checkbox" on:change={handleToggle}>Show list<br/> -->
+	<Checkbox on:checked={handleToggle} />
 	{#if listVisible===true}
 		<div transition:fly="{{y:200, duration:500}}" id="myList">
+			<h2>A list</h2>
 			<button on:click={addItem}>Lägg till</button>
 			<button on:click={add100Items}>Lägg till 100</button>
 			<button on:click={clearList}>Rensa</button>
