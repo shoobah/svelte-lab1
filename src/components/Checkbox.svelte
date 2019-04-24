@@ -30,9 +30,9 @@
 
 <div>
 	{#if checked===false}
-		<img transition:fade on:click={checkMe} alt="" src="./Black_checkbox-unchecked.svg" />
+		<img transition:fade on:dragstart={(e)=>{e.preventDefault()}} on:click={checkMe} alt="" src="./Black_checkbox-unchecked.svg" />
 	{:else}
-		<img transition:fade on:click={checkMe} alt="" src="./Black_checkbox-checked.svg" />
+		<img transition:fade  on:dragstart={(e)=>{e.preventDefault()}} on:click={checkMe} alt="" src="./Black_checkbox-checked.svg" />
 	{/if}
 </div>
 <br/>
