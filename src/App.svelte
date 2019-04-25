@@ -1,6 +1,8 @@
 <script>
 	import { fade, fly } from "svelte/transition";
 	import Checkbox from "./components/Checkbox.svelte";
+	import Month from "./components/calendar/Month.svelte";
+
 	export let name;
 
 	let list = [];
@@ -54,6 +56,7 @@
 
 <div id="app">
 	<h1>Hello {name}!</h1>
+	<Month />
 	<!-- <input type="checkbox" on:change={handleToggle}>Show list<br/> -->
 	<Checkbox on:checked={handleToggle} />
 	{#if listVisible===true}
