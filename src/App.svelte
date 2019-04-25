@@ -17,9 +17,6 @@
 	const add100Items = () => {
 	  for (let n = 0; n < 100; n++) {
 	    list = [...list, getItem(0, 100)];
-	    // .sort((a, b) =>
-	    //   a < b ? -1 : a > b ? 1 : 0
-	    // );
 	  }
 	};
 
